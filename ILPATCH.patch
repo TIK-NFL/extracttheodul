@@ -1,0 +1,477 @@
+diff -rupN theodul.orig/plugin/1/static/main.js theodul/plugin/1/static/main.js
+--- theodul.orig/plugin/1/static/main.js	2016-09-27 11:21:26.460871870 +0200
++++ theodul/plugin/1/static/main.js	2016-09-27 16:14:11.545707449 +0200
+@@ -155,7 +155,8 @@ define(["require", "jquery", "underscore
+     var embedHeightFive = 720;
+     var min_segment_duration = 5000;
+     var logoLink = false;
+-    var logo = plugin_path + "images/logo.png";
++    //var logo = plugin_path + "images/logo.png"; ILPATCH
++    var logo = "/%iliasbasedir%/templates/default/images/HeaderIcon.svg";
+     var showEmbed = true;
+ 
+     /* don't change these variables */
+@@ -271,7 +272,8 @@ define(["require", "jquery", "underscore
+ 
+     function initTranslate(language, funcSuccess, funcError) {
+         var path = Engage.getPluginPath("EngagePluginControls").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/plugin/1/static/templates/desktop_top.html theodul/plugin/1/static/templates/desktop_top.html
+--- theodul.orig/plugin/1/static/templates/desktop_top.html	2016-09-27 11:21:26.460871870 +0200
++++ theodul/plugin/1/static/templates/desktop_top.html	2016-09-27 16:37:04.667125057 +0200
+@@ -160,6 +160,7 @@
+           </div>
+         </div>
+         <% } %>
++<!--
+       <% if((typeof loggedIn !== "undefined")
+       && (typeof str_checkingStatus !== "undefined")
+       && (typeof str_loginLogout !== "undefined")) { %>
+@@ -183,6 +184,7 @@
+             </ul>
+ 	</div>
+         <% } %>
++        -->
+     </div>
+     <div class="clear"></div>
+     <!-- ##### Slider ##### -->
+diff -rupN theodul.orig/plugin/1/static/templates/desktop_top_ifbottom.html theodul/plugin/1/static/templates/desktop_top_ifbottom.html
+--- theodul.orig/plugin/1/static/templates/desktop_top_ifbottom.html	2016-09-27 11:21:26.460871870 +0200
++++ theodul/plugin/1/static/templates/desktop_top_ifbottom.html	2016-09-27 16:38:39.355362310 +0200
+@@ -30,6 +30,7 @@
+         </ul>
+       </div>
+       <% } %>
++<!--
+       <% if((typeof loggedIn !== "undefined")
+       && (typeof str_checkingStatus !== "undefined")
+       && (typeof str_loginLogout !== "undefined")) { %>
+@@ -53,6 +54,7 @@
+             </ul>
+ 	</div>
+         <% } %>
++-->
+     </div>
+ </div>
+ <% } %>
+diff -rupN theodul.orig/plugin/10/static/main.js theodul/plugin/10/static/main.js
+--- theodul.orig/plugin/10/static/main.js	2016-09-27 11:21:26.470871721 +0200
++++ theodul/plugin/10/static/main.js	2016-09-27 16:14:11.545707449 +0200
+@@ -108,7 +108,8 @@ define(["jquery", "underscore", "backbon
+ 
+     function initTranslate(language) {
+         var path = Engage.getPluginPath("EngagePluginTabShortcuts").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/plugin/2/static/collections/footprint.js theodul/plugin/2/static/collections/footprint.js
+--- theodul.orig/plugin/2/static/collections/footprint.js	2016-09-27 11:21:26.461871855 +0200
++++ theodul/plugin/2/static/collections/footprint.js	2016-09-27 16:14:11.546707430 +0200
+@@ -23,7 +23,8 @@
+ define(["jquery", "backbone", "engage/core", "../models/footprint"], function($, Backbone, Engage, FootprintModel) {
+     "use strict";
+ 
+-    var USERTRACKING_ENDPOINT = "/usertracking";
++    // var USERTRACKING_ENDPOINT = "/usertracking"; ILPATCH
++    var USERTRACKING_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/usertracking";
+     var USERTRACKING_ENDPOINT_FOOTPRINTS = "/footprint.json";
+ 
+     var mediaPackageID = Engage.model.get("urlParameters").id;
+diff -rupN theodul.orig/plugin/2/static/main.js theodul/plugin/2/static/main.js
+--- theodul.orig/plugin/2/static/main.js	2016-09-27 11:21:26.461871855 +0200
++++ theodul/plugin/2/static/main.js	2016-09-27 16:14:11.546707430 +0200
+@@ -95,7 +95,8 @@ define(["require", "jquery", "backbone",
+     }
+ 
+     /* change these variables */
+-    var SEARCH_ENDPOINT = "/search/episode.json";
++    // var SEARCH_ENDPOINT = "/search/episode.json"; ILPATCH
++    var SEARCH_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/MHData/episode.json"
+ 
+     /* don't change these variables */
+     var initCount = 5;
+@@ -111,7 +112,8 @@ define(["require", "jquery", "backbone",
+ 
+     function initTranslate(language) {
+         var path = Engage.getPluginPath("EngagePluginCustomMhConnection").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        //var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/plugin/2/static/models/infoMe.js theodul/plugin/2/static/models/infoMe.js
+--- theodul.orig/plugin/2/static/models/infoMe.js	2016-09-27 11:21:26.461871855 +0200
++++ theodul/plugin/2/static/models/infoMe.js	2016-09-27 16:14:11.547707411 +0200
+@@ -23,7 +23,8 @@
+ define(["backbone", "engage/core"], function(Backbone, Engage) {
+     "use strict";
+ 
+-    var INFO_ME_ENDPOINT = "/info/me.json";
++    // var INFO_ME_ENDPOINT = "/info/me.json"; ILPATCH
++    var INFO_ME_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/info/me.json"
+ 
+     var InfoMeModel = Backbone.Model.extend({
+         urlRoot: INFO_ME_ENDPOINT,
+diff -rupN theodul.orig/plugin/2/static/models/mediaPackage.js theodul/plugin/2/static/models/mediaPackage.js
+--- theodul.orig/plugin/2/static/models/mediaPackage.js	2016-09-27 11:21:26.461871855 +0200
++++ theodul/plugin/2/static/models/mediaPackage.js	2016-09-27 16:14:11.547707411 +0200
+@@ -27,7 +27,8 @@ define(["backbone", "engage/core"], func
+         mediaPackageModelInternalError: new Engage.Event("MhConnection:mediaPackageModelInternalError", "A mediapackage model error occured", "trigger")
+     };
+ 
+-    var SEARCH_ENDPOINT = "/search/episode.json";
++    // var SEARCH_ENDPOINT = "/search/episode.json"; ILPATCH
++    var SEARCH_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/MHData/episode.json";
+ 
+     var mediaPackageID = Engage.model.get("urlParameters").id;
+     if (!mediaPackageID) {
+diff -rupN theodul.orig/plugin/2/static/models/views.js theodul/plugin/2/static/models/views.js
+--- theodul.orig/plugin/2/static/models/views.js	2016-09-27 11:21:26.461871855 +0200
++++ theodul/plugin/2/static/models/views.js	2016-09-27 16:58:17.972083391 +0200
+@@ -34,7 +34,8 @@ define(["jquery", "backbone", "engage/co
+         }
+     });
+ 
+-    var USERTRACKING_ENDPOINT = "/usertracking";
++    // var USERTRACKING_ENDPOINT = "/usertracking"; ILPATCH
++    var USERTRACKING_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/usertracking";
+     var USERTRACKING_ENDPOINT_STATS = "/stats.json";
+ 
+     var mediaPackageID = Engage.model.get("urlParameters").id;
+@@ -51,7 +52,7 @@ define(["jquery", "backbone", "engage/co
+         put: function() {
+             Engage.log("MhConnection: Adding user to viewers");
+             var thisModel = this;
+-            $.ajax({
++/*            $.ajax({
+                 type: "PUT",
+                 url: USERTRACKING_ENDPOINT,
+                 data: {
+@@ -63,19 +64,19 @@ define(["jquery", "backbone", "engage/co
+                 success: function(result) {
+                     thisModel.update();
+                 }
+-            });
++            });*/
+         },
+         update: function() {
+             // request model data
+             Engage.log("MhConnection: Updating views model");
+-            this.fetch({
++/*            this.fetch({
+                 data: {
+                     id: mediaPackageID
+                 },
+                 success: function(model) {
+                     model.trigger("change");
+                 }
+-            });
++            });*/
+         },
+         defaults: {
+             "stats": {
+diff -rupN theodul.orig/plugin/4/static/main.js theodul/plugin/4/static/main.js
+--- theodul.orig/plugin/4/static/main.js	2016-09-27 11:21:26.462871840 +0200
++++ theodul/plugin/4/static/main.js	2016-09-27 16:14:11.548707393 +0200
+@@ -107,7 +107,8 @@ define(["require", "jquery", "underscore
+ 
+     function initTranslate(language, funcSuccess, funcError) {
+         var path = Engage.getPluginPath("EngagePluginTabSlidetext").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/plugin/5/static/main.js theodul/plugin/5/static/main.js
+--- theodul.orig/plugin/5/static/main.js	2016-09-27 11:21:26.462871840 +0200
++++ theodul/plugin/5/static/main.js	2016-09-27 16:14:11.548707393 +0200
+@@ -101,7 +101,8 @@ define(["require", "jquery", "underscore
+ 
+     function initTranslate(language) {
+         var path = Engage.getPluginPath("EngagePluginDescription").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/plugin/6/static/main.js theodul/plugin/6/static/main.js
+--- theodul.orig/plugin/6/static/main.js	2016-09-27 11:21:26.468871751 +0200
++++ theodul/plugin/6/static/main.js	2016-09-27 16:14:11.549707374 +0200
+@@ -255,7 +255,8 @@ define(['require', 'jquery', 'underscore
+ 
+   function initTranslate(language, funcSuccess, funcError) {
+     var path = Engage.getPluginPath('EngagePluginVideoVideoJS').replace(/(\.\.\/)/g, '');
+-    var jsonstr = window.location.origin + '/engage/theodul/' + path; // this solution is really bad, fix it...
++    // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++    var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+     Engage.log('Video: selecting language ' + language);
+     jsonstr += 'language/' + language + '.json';
+diff -rupN theodul.orig/plugin/7/static/main.js theodul/plugin/7/static/main.js
+--- theodul.orig/plugin/7/static/main.js	2016-09-27 11:21:26.468871751 +0200
++++ theodul/plugin/7/static/main.js	2016-09-27 16:14:11.550707355 +0200
+@@ -126,7 +126,8 @@ define(["require", "jquery", "backbone",
+ 
+     function initTranslate(language, funcSuccess, funcError) {
+         var path = Engage.getPluginPath("EngagePluginCustomNotifications").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/plugin/8/static/main.js theodul/plugin/8/static/main.js
+--- theodul.orig/plugin/8/static/main.js	2016-09-27 11:21:26.469871736 +0200
++++ theodul/plugin/8/static/main.js	2016-09-27 16:14:11.550707355 +0200
+@@ -105,7 +105,8 @@ define(["jquery", "underscore", "backbon
+ 
+     function initTranslate(language) {
+         var path = Engage.getPluginPath("EngagePluginTabDescription").replace(/(\.\.\/)/g, "");
+-        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
++        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
+ 
+         Engage.log("Controls: selecting language " + language);
+         jsonstr += "language/" + language + ".json";
+diff -rupN theodul.orig/ui/css/core_desktop_style_bottom.css theodul/ui/css/core_desktop_style_bottom.css
+--- theodul.orig/ui/css/core_desktop_style_bottom.css	2016-09-27 11:21:26.454871960 +0200
++++ theodul/ui/css/core_desktop_style_bottom.css	2016-09-27 16:14:11.551707337 +0200
+@@ -1,19 +1,19 @@
+ /*Core desktop css rules*/
+ 
+-body {
++/*body {
+     min-width: 750px;
+     font-family: Arial, sans-serif;
+-}
++}*/
+ 
+ #btn_fullscreenCancel {
+     z-index: 999;
+     float: right;
+ }
+ 
+-h1, h2, h3 {
++/*h1, h2, h3 {
+     font-weight: normal;
+     line-height: 22px;
+-}
++}*/
+ 
+ #engage_tab_content {
+     padding: 5px 0px 10px 20px;
+diff -rupN theodul.orig/ui/css/core_desktop_style_top.css theodul/ui/css/core_desktop_style_top.css
+--- theodul.orig/ui/css/core_desktop_style_top.css	2016-09-27 11:21:26.454871960 +0200
++++ theodul/ui/css/core_desktop_style_top.css	2016-09-27 16:14:11.551707337 +0200
+@@ -1,9 +1,9 @@
+ /*Core desktop css rules*/
+ 
+-body {
++/*body {
+     min-width: 840px;
+     font-family: Arial, sans-serif;
+-}
++}*/
+ 
+ #btn_fullscreenCancel {
+     z-index: 999;
+@@ -11,10 +11,10 @@ body {
+     margin: 30px 30px 0px 0px;
+ }
+ 
+-h1, h2, h3 {
++/*h1, h2, h3 {
+     font-weight: normal;
+     line-height: 22px;
+-}
++}*/
+ 
+ #engage_tab_content {
+     padding: 5px 0px 10px 20px;
+diff -rupN theodul.orig/ui/engage_init.js theodul/ui/engage_init.js
+--- theodul.orig/ui/engage_init.js	2016-09-27 11:21:26.455871945 +0200
++++ theodul/ui/engage_init.js	2016-09-27 16:14:11.551707337 +0200
+@@ -1,9 +1,12 @@
+ /* global require.js config */
+ requirejs.config({
+-    baseUrl: "js/lib",
++    // baseUrl: "js/lib", ILPATCH
++    baseUrl: '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/lib',
+     paths: {
+         engage: "../engage",
+-        plugins: "/engage/plugin/*/static"
++        // plugins: "/engage/plugin/*/static" ILPATCH
++        plugins: '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/plugin/*/static'
++
+     },
+     shim: {
+         "bootstrap": {
+@@ -35,6 +38,7 @@ requirejs.config({
+         }
+     }
+ });
+-var PLUGIN_PATH = "/engage/theodul/plugin/";
++// var PLUGIN_PATH = "/engage/theodul/plugin/";
++var PLUGIN_PATH = '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/plugin/';
+ // start core logic
+ require(["engage/core"]);
+diff -rupN theodul.orig/ui/js/engage/core.js theodul/ui/js/engage/core.js
+--- theodul.orig/ui/js/engage/core.js	2016-09-27 11:21:26.455871945 +0200
++++ theodul/ui/js/engage/core.js	2016-09-27 16:14:11.552707318 +0200
+@@ -196,7 +196,8 @@ define(["require", "jquery", "underscore
+         selectedLanguage = getDefaultLanguage(language);
+     }
+     console.log("Controls: selecting language " + selectedLanguage);
+-    jsonstr += "language/" + selectedLanguage + ".json";
++    //jsonstr += "language/" + selectedLanguage + ".json"; ILPATCH
++    jsonstr += "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/language/" + selectedLanguage + ".json";
+     $.ajax({
+       url: jsonstr,
+       dataType: "json",
+@@ -484,19 +485,22 @@ define(["require", "jquery", "underscore
+   function loadTemplate(plugin, plugin_name, plugin_path) {
+     if (plugin.template !== "none") {
+       // load template asynchronously
+-      $.get("engage/theodul/" + plugin_path + plugin.template, function (template) {
++      // $.get("engage/theodul/" + plugin_path + plugin.template, function(template) { ILPATCH
++      $.get('/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path + plugin.template, function (template) {
+         var template_data = {};
+         // add template data if not undefined
+         if (plugin.template_data !== undefined) {
+           template_data = plugin.template_data;
+         }
+         // add full plugin path to the template data
+-        template_data.plugin_path = "engage/theodul/" + plugin_path;
++        // template_data.plugin_path = "engage/theodul/" + plugin_path; ILPATCH
++        template_data.plugin_path = '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path;
+         // process the template using underscore and set it in the plugin obj
+         var _template = _.template(template);
+         plugin.templateProcessed = _template(template_data);
+         plugin.template = template;
+-        plugin.pluginPath = "engage/theodul/" + plugin_path;
++        // plugin.pluginPath = "engage/theodul/" + plugin_path; ILPATCH
++        plugin.pluginPath = '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path;
+         if (plugin.insertIntoDOM) {
+           // load the compiled HTML into the component
+           engageCore.pluginView.insertPlugin(plugin, plugin_name, translationData);
+@@ -545,7 +549,8 @@ define(["require", "jquery", "underscore
+             link.attr({
+               type: "text/css",
+               rel: "stylesheet",
+-              href: "engage/theodul/" + plugin_path + style_path
++              // href: "engage/theodul/" + plugin_path + style_path ILPATCH
++              href: '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path + style_path
+             });
+             $("head").append(link);
+           }
+@@ -556,7 +561,8 @@ define(["require", "jquery", "underscore
+           link.attr({
+             type: "text/css",
+             rel: "stylesheet",
+-            href: "engage/theodul/" + plugin_path + plugin.styles
++            // href: "engage/theodul/" + plugin_path + plugin.styles ILPATCH
++            href: '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path + plugin.styles
+           });
+           $("head").append(link);
+         }
+@@ -565,19 +571,22 @@ define(["require", "jquery", "underscore
+       // we have to change that in the future... this is only for loading a second controls template to put above the video if the player controls are below it
+       if (plugin.template_topIfBottom && plugin.template_topIfBottom !== "none") {
+         // load template asynchronously
+-        $.get("engage/theodul/" + plugin_path + plugin.template_topIfBottom, function (template) {
++        // $.get("engage/theodul/" + plugin_path + plugin.template_topIfBottom, function (template) { ILPATCH
++        $.get('/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path + plugin.template_topIfBottom, function (template) {
+           var template_data = {};
+           // add template data if not undefined
+           if (plugin.template_data_topIfBottom !== undefined) {
+             template_data = plugin.template_data_topIfBottom;
+           }
+           // add full plugin path to the template data
+-          template_data.plugin_path = "engage/theodul/" + plugin_path;
++          // template_data.plugin_path = "engage/theodul/" + plugin_path; ILPATCH
++          template_data.plugin_path = '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path;
+           // process the template using underscore and set it in the plugin obj
+           var _template = _.template(template);
+           plugin.templateProcessed_topIfBottom = _template(template_data);
+           plugin.template_topIfBottom = template;
+-          plugin.pluginPath_topIfBottom = "engage/theodul/" + plugin_path;
++          // plugin.pluginPath_topIfBottom = "engage/theodul/" + plugin_path; ILPATCH
++          plugin.pluginPath_topIfBottom = '/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/js/engage/' + plugin_path;
+           loadTemplate(plugin, plugin_name, plugin_path);
+         });
+       } else {
+@@ -700,8 +709,10 @@ define(["require", "jquery", "underscore
+           break;
+         case "desktop":
+         default:
+-          cssAttr.href = engageCore.controls_top ? "css/core_desktop_style_top.css" : "css/core_desktop_style_bottom.css";
+-          core_template = engageCore.controls_top ? "templates/core_desktop_top.html" : "templates/core_desktop_bottom.html";
++          // cssAttr.href = engageCore.controls_top ? "css/core_desktop_style_top.css" : "css/core_desktop_style_bottom.css"; ILPATCH
++          cssAttr.href = engageCore.controls_top ? "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/css/core_desktop_style_top.css" : "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/css/core_desktop_style_bottom.css";
++          // core_template = engageCore.controls_top ? "templates/core_desktop_top.html" : "templates/core_desktop_bottom.html"; ILPATCH
++          core_template = engageCore.controls_top ? "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/templates/core_desktop_top.html" : "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/templates/core_desktop_bottom.html";
+           view_logic_path = "engage/views/desktop";
+           engageCore.model.desktop = true;
+           break;
+diff -rupN theodul.orig/ui/js/engage/models/meInfo.js theodul/ui/js/engage/models/meInfo.js
+--- theodul.orig/ui/js/engage/models/meInfo.js	2016-09-27 11:21:26.455871945 +0200
++++ theodul/ui/js/engage/models/meInfo.js	2016-09-27 16:14:11.552707318 +0200
+@@ -42,7 +42,8 @@ define(['jquery', 'backbone'], function(
+      * Model with information about the current user and the current MH configuration
+      */
+     var MeInfoModel = Backbone.Model.extend({
+-        urlRoot: "../../../info/me.json",
++        //urlRoot: "../../../info/me.json", ILPATCH
++        urlRoot: "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/info/me.json",
+         initialize: function() {
+             this.fetch({
+                 success: function(me) {
+diff -rupN theodul.orig/ui/js/engage/models/pluginInfo.js theodul/ui/js/engage/models/pluginInfo.js
+--- theodul.orig/ui/js/engage/models/pluginInfo.js	2016-09-27 11:21:26.455871945 +0200
++++ theodul/ui/js/engage/models/pluginInfo.js	2016-09-27 16:14:11.553707299 +0200
+@@ -23,7 +23,8 @@
+ define(['jquery', 'backbone'], function($, Backbone) {
+     "use strict";
+ 
+-    var PLUGIN_MANAGER_PATH = "/engage/theodul/manager/list.json";
++    //var PLUGIN_MANAGER_PATH = "/engage/theodul/manager/list.json"; ILPATCH
++    var PLUGIN_MANAGER_PATH = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/manager/list.json";
+ 
+     var PluginInfoModel = Backbone.Model.extend({
+         // URL of the search enpoint
+Binary files theodul.orig/ui/templates/.core_desktop_bottom.html.kate-swp and theodul/ui/templates/.core_desktop_bottom.html.kate-swp differ
+diff -rupN theodul.orig/ui/templates/core_desktop_bottom.html theodul/ui/templates/core_desktop_bottom.html
+--- theodul.orig/ui/templates/core_desktop_bottom.html	2016-09-27 11:21:26.456871930 +0200
++++ theodul/ui/templates/core_desktop_bottom.html	2016-09-27 16:19:25.858847924 +0200
+@@ -11,7 +11,7 @@
+         <!-- timeline plugin container -->
+         <div id="engage_timeline_plugin"></div>
+         <div id="engage_timeline_expand_btn">
+-            <img id="engage_timeline_expand_btn_img" src="img/pulldown.png" />
++            <img id="engage_timeline_expand_btn_img" src="/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/img/pulldown.png" />
+         </div>
+     </div>
+     <div class="clear"></div>
+diff -rupN theodul.orig/ui/templates/core_desktop_top.html theodul/ui/templates/core_desktop_top.html
+--- theodul.orig/ui/templates/core_desktop_top.html	2016-09-27 11:21:26.456871930 +0200
++++ theodul/ui/templates/core_desktop_top.html	2016-09-27 16:18:53.798445497 +0200
+@@ -4,7 +4,7 @@
+     <!-- timeline plugin container -->
+     <div id="engage_timeline_plugin"></div>
+     <div id="engage_timeline_expand_btn">
+-        <img id="engage_timeline_expand_btn_img" src="img/pulldown.png" />
++        <img id="engage_timeline_expand_btn_img" src="/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/ui/img/pulldown.png" />
+     </div>
+ </div>
+ <!-- content container -->
