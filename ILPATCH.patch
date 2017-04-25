@@ -1,26 +1,26 @@
 diff -rupN theodul.orig/plugin/1/static/main.js theodul/plugin/1/static/main.js
 --- theodul.orig/plugin/1/static/main.js	2016-09-27 11:21:26.460871870 +0200
 +++ theodul/plugin/1/static/main.js	2016-09-27 16:14:11.545707449 +0200
-@@ -155,7 +155,8 @@ define(["require", "jquery", "underscore
-     var embedHeightFive = 720;
-     var min_segment_duration = 5000;
-     var logoLink = false;
--    var logo = plugin_path + "images/logo.png";
-+    //var logo = plugin_path + "images/logo.png"; ILPATCH
-+    var logo = "/%iliasbasedir%/templates/default/images/HeaderIcon.svg";
-     var showEmbed = true;
+@@ -158,7 +158,8 @@
+   var embedHeightFive = 720;
+   var min_segment_duration = 5000;
+   var logoLink = false;
+-  var logo = plugin_path + 'images/logo.png';
++  //var logo = plugin_path + "images/logo.png"; ILPATCH
++  var logo = "/%iliasbasedir%/templates/default/images/HeaderIcon.svg";
+   var showEmbed = true;
+   // mobile mode: time after controls are hidden again in seconds
+   var hideTimeout = 4;
+@@ -281,7 +282,8 @@
  
-     /* don't change these variables */
-@@ -271,7 +272,8 @@ define(["require", "jquery", "underscore
+   function initTranslate(language, funcSuccess, funcError) {
+     var path = Engage.getPluginPath('EngagePluginControls').replace(/(\.\.\/)/g, '');
+-    var jsonstr = window.location.origin + '/engage/theodul/' + path; // this solution is really bad, fix it...
++    // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
++    var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
  
-     function initTranslate(language, funcSuccess, funcError) {
-         var path = Engage.getPluginPath("EngagePluginControls").replace(/(\.\.\/)/g, "");
--        var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it...
-+        // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
-+        var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
- 
-         Engage.log("Controls: selecting language " + language);
-         jsonstr += "language/" + language + ".json";
+     Engage.log('Controls: selecting language ' + language);
+     jsonstr += 'language/' + language + '.json';
 diff -rupN theodul.orig/plugin/1/static/templates/desktop_top.html theodul/plugin/1/static/templates/desktop_top.html
 --- theodul.orig/plugin/1/static/templates/desktop_top.html	2016-09-27 11:21:26.460871870 +0200
 +++ theodul/plugin/1/static/templates/desktop_top.html	2016-09-27 16:37:04.667125057 +0200
@@ -81,7 +81,7 @@ diff -rupN theodul.orig/plugin/2/static/collections/footprint.js theodul/plugin/
  
 -    var USERTRACKING_ENDPOINT = "/usertracking";
 +    // var USERTRACKING_ENDPOINT = "/usertracking"; ILPATCH
-+    var USERTRACKING_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/usertracking";
++    var USERTRACKING_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/MHData/usertracking";
      var USERTRACKING_ENDPOINT_FOOTPRINTS = "/footprint.json";
  
      var mediaPackageID = Engage.model.get("urlParameters").id;
@@ -143,7 +143,7 @@ diff -rupN theodul.orig/plugin/2/static/models/views.js theodul/plugin/2/static/
  
 -    var USERTRACKING_ENDPOINT = "/usertracking";
 +    // var USERTRACKING_ENDPOINT = "/usertracking"; ILPATCH
-+    var USERTRACKING_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/usertracking";
++    var USERTRACKING_ENDPOINT = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/MHData";
      var USERTRACKING_ENDPOINT_STATS = "/stats.json";
  
      var mediaPackageID = Engage.model.get("urlParameters").id;
@@ -208,16 +208,17 @@ diff -rupN theodul.orig/plugin/5/static/main.js theodul/plugin/5/static/main.js
 diff -rupN theodul.orig/plugin/6/static/main.js theodul/plugin/6/static/main.js
 --- theodul.orig/plugin/6/static/main.js	2016-09-27 11:21:26.468871751 +0200
 +++ theodul/plugin/6/static/main.js	2016-09-27 16:14:11.549707374 +0200
-@@ -255,7 +255,8 @@ define(['require', 'jquery', 'underscore
- 
+@@ -255,7 +255,8 @@
    function initTranslate(language, funcSuccess, funcError) {
      var path = Engage.getPluginPath('EngagePluginVideoVideoJS').replace(/(\.\.\/)/g, '');
--    var jsonstr = window.location.origin + '/engage/theodul/' + path; // this solution is really bad, fix it...
-+    // var jsonstr = window.location.origin + "/engage/theodul/" + path; // this solution is really bad, fix it... ILPATCH
+     /* this solution is really bad, fix it... */
+-    var jsonstr = window.location.origin + '/engage/theodul/' + path;
++    // var jsonstr = window.location.origin + '/engage/theodul/' + path; // this solution is really bad, fix it... ILPATCH
 +    var jsonstr = "/%iliasbasedir%/Customizing/global/plugins/Services/Repository/RepositoryObject/Matterhorn/templates/theodul/" + path;
- 
-     Engage.log('Video: selecting language ' + language);
+
+     Engage.log('Controls: selecting language ' + language);
      jsonstr += 'language/' + language + '.json';
+
 diff -rupN theodul.orig/plugin/7/static/main.js theodul/plugin/7/static/main.js
 --- theodul.orig/plugin/7/static/main.js	2016-09-27 11:21:26.468871751 +0200
 +++ theodul/plugin/7/static/main.js	2016-09-27 16:14:11.550707355 +0200
@@ -475,3 +476,64 @@ diff -rupN theodul.orig/ui/templates/core_desktop_top.html theodul/ui/templates/
      </div>
  </div>
  <!-- content container -->
+--- theodul/plugin/9/static/main.js.orig	2017-04-25 11:45:10.516601074 +0200
++++ theodul/plugin/9/static/main.js	2017-04-25 11:46:42.535324136 +0200
+@@ -44,6 +44,7 @@
+     var events = {
+         plugin_load_done: new Engage.Event("Core:plugin_load_done", "", "handler"),
+         timeupdate: new Engage.Event("Video:timeupdate", "notices a timeupdate", "handler"),
++        play: new Engage.Event("Video:play","notices a play event", "handler"),
+         mediaPackageModelError: new Engage.Event("MhConnection:mediaPackageModelError", "", "handler")
+     };
+ 
+@@ -100,7 +101,7 @@
+     var mediapackageID;
+     var mediapackageError = false;
+ 
+-    /* TODO: Wait for the new usertracking service...
++    /* TODO: Wait for the new usertracking service... */
+ 
+     function initPlugin() {
+         mediapackageID = Engage.model.get("urlParameters").id;
+@@ -116,17 +117,25 @@
+         Engage.on(plugin.events.timeupdate.getName(), function(currentTime) {
+             if (!mediapackageError) {
+                 // add footprint each timeupdate
+-                var cTime = Math.round(currentTime);
+-                if (lastFootprint != undefined) {
+-                    if (lastFootprint != cTime) {
++                var cTime = Math.floor(currentTime);
++		if (cTime%10 == 0) {
++                    if (lastFootprint != undefined) {
++                        if (lastFootprint != cTime) {
++                            lastFootprint = cTime;
++                            Engage.model.get("footprints").put(cTime-10, cTime);
++                        }
++                    } else {
+                         lastFootprint = cTime;
+-                        Engage.model.get("footprints").put(cTime, cTime + 1);
+                     }
+-                } else {
+-                    lastFootprint = cTime;
+-                }
++		}
+             }
+         });
++        Engage.on(plugin.events.play.getName(), function() {
++        Engage.log("Usertracking: Play event");
++            if (!mediapackageError) {
++                Engage.model.get("footprints").put(-1, 0);
++	    }
++        });
+     }
+ 
+     // init event
+@@ -158,7 +167,7 @@
+         }
+     });
+ 
+-    */
++    /**/
+ 
+     return plugin;
+ });

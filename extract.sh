@@ -41,5 +41,6 @@ mkdir theodul/plugin/10
 cp -r $MHBASE/modules/matterhorn-engage-theodul-plugin-tab-shortcuts/src/main/resources/static theodul/plugin/10/
 
 cd theodul && patch -p1 < ../ILPATCH.patch 
+mv img/loading.gif ui/img/
 
 echo "Replace the theodul folder in templates with newly created one"
